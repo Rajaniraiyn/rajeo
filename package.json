@@ -1,0 +1,42 @@
+{
+  "name": "rajeo",
+  "version": "1.0.0-beta",
+  "description": "A modern video player for html5 videos",
+  "main": "dist/cjs/index.min.js",
+  "module": "dist/esm/index.min.js",
+  "browser": "dist/umd/index/min.js",
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajaniraiyn/rajeo.git"
+  },
+  "keywords": [
+    "video",
+    "html5",
+    "video",
+    "tag",
+    "player",
+    "javascript",
+    "html",
+    "css",
+    "web",
+    "browser",
+    "client",
+    "side"
+  ],
+  "author": "Rajaniraiyn <rajaniraiyn@gmail.com> (https://rajaniraiyn.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rajaniraiyn/rajeo/issues"
+  },
+  "homepage": "https://github.com/Rajaniraiyn/rajeo#readme",
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}
