@@ -23,37 +23,37 @@ export default {
     {
       file: "dist/esm/index.js",
       format: "esm",
-      sourceMap: true,
+      sourcemap: true,
     },
     {
       file: "dist/cjs/index.js",
       format: "cjs",
-      sourceMap: true,
+      sourcemap: true,
     },
     {
       file: "dist/umd/index.js",
       format: "umd",
       name: "rajeo",
-      sourceMap: true,
+      sourcemap: true,
     },
 
     {
       file: "dist/esm/index.min.js",
       format: "esm",
-      sourceMap: true,
+      sourcemap: true,
       plugins: [terser(terserOptions)],
     },
     {
       file: "dist/cjs/index.min.js",
       format: "cjs",
-      sourceMap: true,
+      sourcemap: true,
       plugins: [terser(terserOptions)],
     },
     {
       file: "dist/umd/index.min.js",
       format: "umd",
       name: "rajeo",
-      sourceMap: true,
+      sourcemap: true,
       plugins: [terser(terserOptions)],
     },
   ],
