@@ -4,12 +4,15 @@
   "description": "A modern video player for html5 videos",
   "main": "dist/cjs/index.min.js",
   "module": "dist/esm/index.min.js",
-  "browser": "dist/umd/index/min.js",
+  "browser": "dist/umd/index.min.js",
   "scripts": {
     "postinstall": "npm dedupe",
+    "prebuild": "npm run prettier",
     "build": "rimraf dist && rollup -c",
+    "postbuild": "sass --style=compressed src/style.scss:dist/style.css",
     "prepublishOnly": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -37,9 +40,12 @@
   "homepage": "https://github.com/Rajaniraiyn/rajeo#readme",
   "devDependencies": {
     "husky": "^7.0.2",
+    "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.56.3",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-prettier": "^2.2.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.42.1"
   },
   "husky": {
     "hooks": {
