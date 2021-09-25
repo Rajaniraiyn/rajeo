@@ -28,7 +28,7 @@
 
     return `
     <div class="rajeo-player" id="${id}" >
-    <link rel="stylesheet" href="./style.b.css">
+    <link rel="stylesheet" href="https://unpkg.com/rajeo@latest/dist/style.css">
         <div class="rajeo-overlay">
             <div class="rajeo-animation"></div>
         </div>
