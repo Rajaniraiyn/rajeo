@@ -1,0 +1,281 @@
+/*!
+ * © 2021 Rajaniraiyn
+ * LICENCE: https://raw.githubusercontent.com/Rajaniraiyn/rajeo/main/LICENSE
+ */
+
+@import "theming";
+
+$track-color: transparent;
+$thumb-color: white;
+
+.rajeo-player {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: max-content;
+  height: max-content;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+
+  &:fullscreen {
+    video {
+      min-width: -webkit-fill-available !important;
+      min-height: -webkit-fill-available !important;
+    }
+  }
+
+  video {
+    border-radius: inherit;
+  }
+
+  .rajeo-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+  }
+
+  .rajeo-top {
+    position: absolute;
+    inset: 0 0 auto 0;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .rajeo-bottom {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 1rem;
+    font-family: sans-serif;
+    font-weight: bolder;
+    text-align: center;
+
+    .rajeo-controls {
+      display: grid;
+      align-items: center;
+      grid-template-rows: auto;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.5rem;
+
+      button {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .rajeo-progress {
+        display: flex;
+        height: 0.5rem;
+        border-radius: 0.5rem;
+        position: relative;
+
+        @include light {
+          background-color: white;
+        }
+
+        @include dark {
+          background-color: darken($color: white, $amount: 50);
+        }
+
+        .rajeo-progress-toggle {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          margin: 0.25rem 0;
+          background-color: transparent;
+          -webkit-appearance: none;
+          --track-color: #{$track-color};
+
+          @include light {
+            --thumb-color: #{$thumb-color};
+          }
+
+          @include dark {
+            --thumb-color: #{darken($color: $thumb-color, $amount: 10)};
+          }
+
+          &:focus {
+            outline: none;
+          }
+          &::-webkit-slider-runnable-track {
+            background: var(--track-color);
+            border: 0;
+            border-radius: 0.25rem;
+            width: 100%;
+            height: 0.5rem;
+            cursor: pointer;
+          }
+          &::-webkit-slider-thumb {
+            margin-top: -4px;
+            width: 1rem;
+            height: 1rem;
+            background: var(--thumb-color);
+            border: 0.5px solid #000000;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            -webkit-appearance: none;
+          }
+          &:focus::-webkit-slider-runnable-track {
+            background: var(--track-color);
+          }
+          &::-moz-range-track {
+            background: var(--track-color);
+            border: 0;
+            border-radius: 0.25rem;
+            width: 100%;
+            height: 0.5rem;
+            cursor: pointer;
+          }
+          &::-moz-range-thumb {
+            width: 1rem;
+            height: 1rem;
+            background: var(--thumb-color);
+            border: 0.5px solid #000000;
+            border-radius: 0.5rem;
+            cursor: pointer;
+          }
+          &::-ms-track {
+            background: transparent;
+            border-color: transparent;
+            border-width: 0.25rem 0;
+            color: transparent;
+            width: 100%;
+            height: 0.5rem;
+            cursor: pointer;
+          }
+          &::-ms-fill-lower {
+            background: var(--track-color);
+            border: 0;
+            border-radius: 0.5rem;
+          }
+          &::-ms-fill-upper {
+            background: var(--track-color);
+            border: 0;
+            border-radius: 0.5rem;
+          }
+          &::-ms-thumb {
+            width: 1rem;
+            height: 1rem;
+            background: var(--thumb-color);
+            border: 0.5px solid #000000;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin-top: 0px;
+            /*Needed to keep the Edge thumb centred*/
+          }
+          &:focus::-ms-fill-lower {
+            background: var(--track-color);
+          }
+          &:focus::-ms-fill-upper {
+            background: var(--track-color);
+          }
+          /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the virtical space around the range input in IE*/
+          @supports (-ms-ime-align: auto) {
+            /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+            .rajeo-progress-toggle {
+              margin: 0;
+              /*Edge starts the margin from the thumb, not the track as other browsers do*/
+            }
+          }
+        }
+
+        .rajeo-load-progress {
+          position: absolute;
+          inset: 0 auto 0 0;
+          background-color: rgba(102, 51, 153, 0.5);
+          border-radius: inherit;
+          width: 0;
+          transition: width 0.4s linear;
+        }
+      }
+
+      .rajeo-buttons-left,
+      .rajeo-buttons-right {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .rajeo-pause-play,
+      .rajeo-fullscreen {
+        display: grid;
+        place-items: center;
+      }
+    }
+  }
+
+  .rajeo-top,
+  .rajeo-bottom {
+    transition: 0.4s ease 1s;
+    transition-property: opacity, blur;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+
+    @include light {
+      background-color: rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+
+    @include dark {
+      background-color: darken($color: rgba(255, 255, 255, 0.3), $amount: 50);
+      color: black;
+    }
+  }
+
+  &:not(:fullscreen):hover {
+    .rajeo-top,
+    .rajeo-bottom {
+      transition: 0.4s ease;
+      transition-property: opacity, blur;
+      opacity: 1;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      pointer-events: all;
+    }
+  }
+  &:fullscreen {
+    .rajeo-overlay {
+      margin: 0.5rem;
+
+      &:hover {
+        + .rajeo-top,
+        + .rajeo-top + video + .rajeo-bottom {
+          z-index: 3;
+          transition: 0.4s ease;
+          transition-property: opacity, blur;
+          opacity: 1;
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
+          pointer-events: all;
+        }
+      }
+    }
+
+    .rajeo-top:hover,
+    .rajeo-bottom:hover {
+      z-index: 3;
+      transition: 0.4s ease;
+      transition-property: opacity, blur;
+      opacity: 1;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      pointer-events: all;
+    }
+  }
+}
