@@ -1,5 +1,4 @@
 import { terser } from "rollup-plugin-terser";
-import prettier from "rollup-plugin-prettier";
 
 const terserOptions = {
   module: false,
@@ -21,20 +20,17 @@ export default {
       file: "dist/esm/index.js",
       format: "esm",
       sourcemap: true,
-      plugins: [prettier()],
     },
     {
       file: "dist/cjs/index.js",
       format: "cjs",
       sourcemap: true,
-      plugins: [prettier()],
     },
     {
       file: "dist/umd/index.js",
       format: "umd",
       name: "rajeo",
       sourcemap: true,
-      plugins: [prettier()],
     },
 
     {
