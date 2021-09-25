@@ -29,9 +29,9 @@
     return `
     <div class="rajeo-player" id="${id}" >
     <link rel="stylesheet" href="https://unpkg.com/rajeo@latest/dist/style.css">
-        <div class="rajeo-overlay">
+        <a class="rajeo-overlay">
             <div class="rajeo-animation"></div>
-        </div>
+        </a>
         <div class="rajeo-top">
             <img src="https://avatar.statically.workers.dev/avatar/${title.toUpperCase()}/?shape=circle&s=20" />
             <span class="rajeo-title" title=${title}>${title}</span>
@@ -125,7 +125,7 @@
 
     pause_play_div.onmousedown = pause_play;
 
-    overlay.onmousedown = pause_play;
+    overlay.onclick = pause_play;
 
     /**
      * Toggles Pause and Play
@@ -247,6 +247,10 @@
     }
 
     full.onmousedown = (_) => {
+      toggleFullscreen(player);
+    };
+
+    overlay.ondblclick = (_) => {
       toggleFullscreen(player);
     };
 
