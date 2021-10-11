@@ -121,7 +121,8 @@
       slider = player.getElementsByClassName("rajeo-progress-toggle")[0],
       loadProgress = player.getElementsByClassName("rajeo-load-progress")[0],
       full = player.getElementsByClassName("rajeo-full")[0],
-      pip = player.getElementsByClassName("rajeo-pip")[0];
+      pip = player.getElementsByClassName("rajeo-pip")[0],
+      sound = player.getElementsByClassName("rajeo-sound")[0];
 
     pause_play_div.onmousedown = pause_play;
 
@@ -159,6 +160,19 @@
     video.onplay = play;
 
     video.onpause = pause;
+
+    /**
+     * Toggles Mute and Unmute
+     */
+    sound.onclick = mute_unmute;
+
+    function mute_unmute() {
+      if (video.muted === true) {
+        video.muted = false;
+      } else if (video.muted === false) {
+        video.muted = true;
+      }
+    }
 
     /**
      *
