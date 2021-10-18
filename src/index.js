@@ -167,11 +167,7 @@
     sound.onclick = mute_unmute;
 
     function mute_unmute() {
-      if (video.muted === true) {
-        video.muted = false;
-      } else if (video.muted === false) {
-        video.muted = true;
-      }
+      video.muted = !video.muted
     }
 
     /**
