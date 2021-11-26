@@ -12,3 +12,5 @@ updates:
     labels:
       - "dependabot"
       - "dependencies"
+    commit-message:
+      prefix: "⬆️"
